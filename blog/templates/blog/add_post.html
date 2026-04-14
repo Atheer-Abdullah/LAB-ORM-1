@@ -9,8 +9,9 @@
                 <p class="text-muted">Share your thoughts with the world in a clean, distraction-free environment.</p>
             </div>
             
-            <form method="POST" class="modern-form">
+            <form class="modern-form" action="{% url 'blog:add_post_view' %}" method="POST">
                 {% csrf_token %}
+                
                 <div class="form-group-premium">
                     <input type="text" name="title" class="title-input" placeholder="Title of your story..." required>
                 </div>
@@ -19,8 +20,7 @@
                     <textarea name="content" class="content-input" placeholder="Start writing your masterpiece..." required></textarea>
                 </div>
 
-                <div class="form-footer mt-5 d-flex justify-content-end gap-3">
-                    <a href="{% url 'main:home_view' %}" class="btn-secondary-premium">Cancel</a>
+                <div class="form-footer mt-5 d-flex justify-content-end">
                     <button type="submit" class="btn-action shadow-lg">Publish Now</button>
                 </div>
             </form>

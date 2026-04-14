@@ -11,19 +11,10 @@
     <div class="col-md-8 offset-md-2">
         {% for post in posts %}
         <article class="post-card mb-5">
-            <div class="mb-3">
-                <span class="badge-tech">Productivity</span>
-            </div>
-
             <h2 class="fw-bold mb-3 h3">{{ post.title }}</h2>
             <p class="post-content mb-4">
                 {{ post.content|truncatewords:40 }}
             </p>
-
-            <div class="d-flex align-items-center gap-2 mb-3">
-                <div class="rounded-circle bg-light" style="width: 35px; height: 35px; border: 1px solid #eee;"></div>
-                <span class="small fw-bold text-dark">Atheer Abdullah</span>
-            </div>
 
             <div class="pt-3 border-top mt-3">
                 <div class="text-muted small d-flex align-items-center gap-2">
@@ -38,14 +29,7 @@
         
         {% empty %}
         <div class="text-center py-5">
-            <p class="text-muted fs-4 mb-4">Your journal is currently empty.</p>
-            <a href="{% url 'blog:add_post_view' %}" class="btn-action shadow-lg text-decoration-none">
-                <span>Write Your First Story</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-            </a>
+            <p class="text-muted fs-4">Your journal is currently empty.</p>
         </div>
         {% endfor %}
     </div>
