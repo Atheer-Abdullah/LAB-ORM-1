@@ -1,0 +1,53 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<header class="mb-5 py-4 text-center">
+    <h1 class="merged-section-title">
+        <span class="text-latest">Latest</span> <span class="text-stories">Stories</span><span class="dot-accent">.</span>
+    </h1>
+</header>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        {% for post in posts %}
+        <article class="post-card mb-5">
+            <div class="mb-3">
+                <span class="badge-tech">Productivity</span>
+            </div>
+
+            <h2 class="fw-bold mb-3 h3">{{ post.title }}</h2>
+            <p class="post-content mb-4">
+                {{ post.content|truncatewords:40 }}
+            </p>
+
+            <div class="d-flex align-items-center gap-2 mb-3">
+                <div class="rounded-circle bg-light" style="width: 35px; height: 35px; border: 1px solid #eee;"></div>
+                <span class="small fw-bold text-dark">Atheer Abdullah</span>
+            </div>
+
+            <div class="pt-3 border-top mt-3">
+                <div class="text-muted small d-flex align-items-center gap-2">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <span>{{ post.published_at|date:"M d, Y" }}</span>
+                    <span class="opacity-50">•</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <span>{{ post.published_at|date:"H:i" }}</span>
+                </div>
+            </div>
+        </article>
+        
+        {% empty %}
+        <div class="text-center py-5">
+            <p class="text-muted fs-4 mb-4">Your journal is currently empty.</p>
+            <a href="{% url 'blog:add_post_view' %}" class="btn-action shadow-lg text-decoration-none">
+                <span>Write Your First Story</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
