@@ -19,13 +19,15 @@
             Byte<span class="dot-accent" style="color: var(--accent);">.</span>
         </a>
         
-        <div class="ms-auto d-flex gap-4 align-items-center">
-            <a href="{% url 'main:home_view' %}" class="nav-link-premium" style="color: var(--text-color);">Journal</a>
-            
-            <button id="theme-toggle" class="btn btn-sm btn-outline-secondary rounded-circle px-2">
-                <i id="theme-icon" class="bi bi-moon-stars-fill"></i>
-            </button>
-        </div>
+<div class="ms-auto d-flex gap-4 align-items-center">
+    <a href="{% url 'main:home_view' %}" class="nav-link-premium" style="color: var(--text-color);">Journal</a>
+    
+    <a href="{% url 'main:add_post_view' %}" class="nav-link-premium" style="color: var(--text-color);">Post</a>
+    
+    <button id="theme-toggle" class="btn btn-sm btn-outline-secondary rounded-circle px-2">
+        <i id="theme-icon" class="bi bi-moon-stars-fill"></i>
+    </button>
+</div>
     </div>
 </nav>
 
