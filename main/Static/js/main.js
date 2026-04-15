@@ -34,3 +34,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 "color: white; background: #6366f1; padding: 5px; font-weight: bold; border-radius: 4px 0 0 4px;", 
                 "color: #6366f1; background: #f1f5f9; padding: 5px; border-radius: 0 4px 4px 0;");
 });
+
+const toggleBtn = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
+const currentTheme = localStorage.getItem('theme');
+
+
+if (currentTheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    themeIcon.classList.replace('bi-moon-stars-fill', 'bi-sun-fill');
+}
+
+toggleBtn.addEventListener('click', () => {
+    let theme = document.documentElement.getAttribute('data-theme');
+    
+    if (theme === 'dark') {
+        
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        
+        themeIcon.classList.replace('bi-sun-fill', 'bi-moon-stars-fill');
+    } else {
+        
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        
+        themeIcon.classList.replace('bi-moon-stars-fill', 'bi-sun-fill');
+    }
+});

@@ -1,29 +1,49 @@
 :root {
     --accent: #6366f1;
     --accent-soft: rgba(99, 102, 241, 0.08);
-    --dark: #0f172a;
+    --bg-color: #fdfdfd;
+    --text-color: #0f172a;
+    --card-bg: #ffffff;
+    --nav-bg: rgba(255, 255, 255, 0.8);
     --gray-soft: #f1f5f9;
-    --glass: rgba(255, 255, 255, 0.8);
+    --border-color: rgba(0, 0, 0, 0.05);
 }
 
+[data-theme="dark"] {
+    --bg-color: #0f172a; 
+    --text-color: #f1f5f9;
+    --card-bg: #1e293b;
+    --nav-bg: rgba(15, 23, 42, 0.9);
+    --gray-soft: #334155;
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 2. التنسيقات العامة */
 body {
-    background: #fdfdfd;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-family: 'Plus Jakarta Sans', sans-serif;
-    color: var(--dark);
     -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Navbar */
+main { flex: 1; }
+
+/* (Navbar) */
 .custom-nav {
-    background: var(--glass);
+    background: var(--nav-bg) !important;
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid var(--border-color);
     padding: 1.2rem 0;
+    color: var(--text-color) !important;
 }
 
 .nav-link-premium {
     text-decoration: none;
-    color: var(--dark);
+    color: var(--text-color);
     font-weight: 600;
     font-size: 0.95rem;
     position: relative;
@@ -40,8 +60,9 @@ body {
 
 .nav-link-premium:hover::after { width: 100%; }
 
+/* (Buttons) */
 .btn-action {
-    background: var(--dark);
+    background: var(--accent); 
     color: white !important;
     padding: 12px 24px;
     border-radius: 14px;
@@ -51,13 +72,43 @@ body {
     align-items: center;
     gap: 10px;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: none;
 }
 
 .btn-action:hover {
     transform: scale(1.05) translateY(-2px);
-    box-shadow: 0 15px 30px rgba(15, 23, 42, 0.2);
+    box-shadow: 0 15px 30px rgba(99, 102, 241, 0.3);
 }
 
+.btn-delete-premium {
+    background: var(--gray-soft) !important; 
+    color: var(--text-color) !important;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700; 
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; 
+    padding: 10px 22px; 
+    border-radius: 12px; 
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-delete-premium:hover {
+    background: #ef4444 !important; 
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(239, 68, 68, 0.2); 
+}
+
+/* (Inputs) */
+.editor-container {
+    background-color: var(--card-bg) !important;
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid var(--border-color);
+}
 
 .title-input {
     width: 100%;
@@ -69,6 +120,7 @@ body {
     padding-bottom: 20px;
     border-bottom: 2px solid var(--gray-soft);
     margin-bottom: 30px;
+    color: var(--text-color);
 }
 
 .content-input {
@@ -80,30 +132,20 @@ body {
     outline: none;
     background: transparent;
     resize: none;
+    color: var(--text-color);
 }
 
-.btn-secondary-premium {
-    background: var(--gray-soft);
-    color: var(--dark);
-    padding: 12px 28px;
-    border-radius: 14px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-.btn-secondary-premium:hover { background: #e2e8f0; }
-
-/* Footer Styles */
+/*(Footer) */
 .footer-premium {
-    background: #ffffff;
-    border-top: 1px solid rgba(0,0,0,0.05);
+    background: var(--bg-color);
+    border-top: 1px solid var(--border-color);
     padding-top: 2rem;
+    color: var(--text-color);
 }
 
 .footer-link {
     text-decoration: none;
-    color: var(--text-main);
+    color: var(--text-color);
     font-size: 0.9rem;
     font-weight: 600;
     opacity: 0.6;
@@ -113,42 +155,4 @@ body {
 .footer-link:hover {
     opacity: 1;
     color: var(--accent);
-}
-
-.extra-small {
-    font-size: 0.75rem;
-    letter-spacing: 0.5px;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-main {
-    flex: 1;
-}
-
-/*(Delete Button) */
-.btn-delete-premium {
-    background: var(--dark) !important; 
-    color: white !important;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 700; 
-    display: inline-flex;
-    align-items: center;
-    gap: 8px; 
-    padding: 10px 22px; 
-    border-radius: 12px; 
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: none;
-}
-
-
-.btn-delete-premium:hover {
-    background: #ef4444 !important; 
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(239, 68, 68, 0.2); 
 }
