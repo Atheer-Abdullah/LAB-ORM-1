@@ -18,3 +18,7 @@ def add_post_view(request):
 def home_view(request):
     posts = Post.objects.all()
     return render(request, "main/home.html", {"posts": posts})
+
+def post_detail_view(request:HttpRequest, post_id:int):
+    post = Post.objects.get(pk=post_id)
+    return render(request, "blog/post_detail.html", {"post": post})

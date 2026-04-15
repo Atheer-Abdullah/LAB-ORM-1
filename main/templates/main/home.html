@@ -27,8 +27,16 @@
         <h2 class="fw-bold mb-3 h3" style="color: var(--text-color);">{{ post.title }}</h2>
         
         <p class="post-content mb-4" style="color: var(--text-color); opacity: 0.8; line-height: 1.7;">
-            {{ post.content|truncatewords:40 }}
-        </p>
+    {{ post.content|truncatewords:40 }}
+</p>
+
+<div class="d-flex justify-content-end mb-3">
+    <a href="{% url 'blog:post_detail_view' post.id %}" class="btn btn-outline-primary rounded-pill px-4">
+        Read More →
+    </a>
+</div>
+
+<div class="pt-3 border-top mt-3" style="border-top-color: var(--border-color) !important;">
 
         {% if post.video %}
         <div class="mb-4">
