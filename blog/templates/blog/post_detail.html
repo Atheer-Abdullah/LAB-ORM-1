@@ -50,18 +50,24 @@
 </div>
 
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content" style="background-color: var(--card-bg); color: var(--text-color);">
-      <div class="modal-header">
-        <h5 class="modal-title">Delete Post</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="background-color: var(--card-bg); color: var(--text-color); border: 1px solid var(--border-color); border-radius: 15px;">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold">Confirm Deletion</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        Are you sure you want to delete: <strong>{{ post.title }}</strong>?
+      <div class="modal-body text-center py-4">
+        <p class="fs-5">Are you sure you want to delete:</p>
+        <h4 class="text-accent fw-bold">"{{ post.title }}"</h4>
+        <div class="alert alert-danger d-inline-block py-1 px-3 mt-2 border-0 small" style="border-radius: 10px;">
+        <i class="bi bi-exclamation-triangle-fill me-1"></i>
+            This action is permanent and cannot be undone.
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <a href="#" class="btn btn-danger">Confirm Delete</a>
+      <div class="modal-footer border-0 justify-content-center pb-4">
+        <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">No, Cancel</button>
+        
+        <a href="{% url 'blog:post_delete_view' post.id %}" class="btn btn-danger rounded-pill px-4">Yes, Delete Post</a>
       </div>
     </div>
   </div>

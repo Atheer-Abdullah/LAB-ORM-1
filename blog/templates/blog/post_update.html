@@ -2,47 +2,49 @@
 
 {% block content %}
 <div class="row justify-content-center">
-    <div class="col-lg-8">
-        <div class="editor-container">
-            <div class="editor-header mb-5">
-                <h1 class="display-5 fw-bold">Edit <span class="text-accent">Chapter.</span></h1>
-                <p class="text-muted">Refine your masterpiece and update your thoughts for the world.</p>
+    <div class="col-md-10 col-lg-7"> 
+        <div class="editor-container shadow-sm p-4 p-md-5" style="background-color: var(--card-bg); border-radius: 25px; border: 1px solid var(--border-color);">
+            <div class="editor-header mb-4 text-center">
+                <h1 class="h2 fw-bold" style="color: var(--text-color);">Edit <span class="text-accent">Chapter.</span></h1>
+                <p class="small" style="color: var(--text-color); opacity: 0.7;">
+                 Refine your masterpiece and update your thoughts.
+                </p>
             </div>
             
             <form action="{% url 'blog:post_update_view' post.id %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 
-                <div class="form-group-premium">
-                    <input type="text" name="title" class="title-input" placeholder="Title of your story..." value="{{ post.title }}" required>
+                <div class="form-group-premium mb-3">
+                    <input type="text" name="title" class="title-input w-100" style="font-size: 1.5rem; border: none; background: transparent; color: var(--text-color); border-bottom: 1px solid var(--border-color); outline: none;" placeholder="Title of your story..." value="{{ post.title }}" required>
                 </div>
 
-                <div class="form-group-premium">
-                    <textarea name="content" class="content-input" placeholder="Start writing your masterpiece..." required>{{ post.content }}</textarea>
+                <div class="form-group-premium mb-4">
+                    <textarea name="content" class="content-input w-100" style="min-height: 250px; border: none; background: transparent; color: var(--text-color); outline: none; resize: none; line-height: 1.6;" placeholder="Start writing your masterpiece..." required>{{ post.content }}</textarea>
                 </div>
 
-                <div class="form-footer mt-5 d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <div class="form-footer mt-4 d-flex justify-content-between align-items-center flex-wrap gap-3">
                     
-                    <div class="d-flex gap-2">
-                        <label for="id_poster" class="btn-action shadow-sm {% if post.poster %}btn-success-custom{% endif %}" style="cursor: pointer; padding: 8px 15px; font-size: 0.9rem;">
+                    <div class="d-flex gap-2 flex-wrap">
+                        <label for="id_poster" class="btn-action shadow-sm {% if post.poster %}btn-success-custom{% endif %}" style="cursor: pointer; padding: 6px 12px; font-size: 0.8rem; border-radius: 10px;">
                             <i class="bi {% if post.poster %}bi-check-circle-fill{% else %}bi-image{% endif %} me-1"></i> 
-                            {% if post.poster %}Image Selected{% else %}Image{% endif %}
+                            {% if post.poster %}Image{% else %}Image{% endif %}
                         </label>
                         <input type="file" name="poster" id="id_poster" accept="image/*" style="display: none;">
                         
-                        <label for="id_video" class="btn-action shadow-sm {% if post.video %}btn-success-custom{% endif %}" style="cursor: pointer; padding: 8px 15px; font-size: 0.9rem;">
-                            <i class="bi {% if post.video %}bi-play-btn{% else %}bi-play-btn{% endif %} me-1"></i> Video
+                        <label for="id_video" class="btn-action shadow-sm {% if post.video %}btn-success-custom{% endif %}" style="cursor: pointer; padding: 6px 12px; font-size: 0.8rem; border-radius: 10px;">
+                            <i class="bi bi-play-btn me-1"></i> Video
                         </label>
                         <input type="file" name="video" id="id_video" accept="video/*" style="display: none;">
                         
-                        <label for="id_media" class="btn-action shadow-sm {% if post.media %}btn-success-custom{% endif %}" style="cursor: pointer; padding: 8px 15px; font-size: 0.9rem;">
+                        <label for="id_media" class="btn-action shadow-sm {% if post.media %}btn-success-custom{% endif %}" style="cursor: pointer; padding: 6px 12px; font-size: 0.8rem; border-radius: 10px;">
                             <i class="bi bi-file-earmark-pdf me-1"></i> PDF
                         </label>
                         <input type="file" name="media" id="id_media" accept=".pdf" style="display: none;">
                     </div>
 
                     <div class="d-flex gap-2">
-                         <a href="{% url 'blog:post_detail_view' post.id %}" class="btn-action shadow-sm" style="text-decoration: none; background: #6c757d;">Cancel</a>
-                         <button type="submit" class="btn-action shadow-lg">Save Changes</button>
+                         <a href="{% url 'blog:post_detail_view' post.id %}" class="btn btn-secondary btn-sm rounded-pill px-3" style="text-decoration: none;">Cancel</a>
+                         <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 shadow-lg">Save</button>
                     </div>
                 </div>
             </form>
@@ -51,7 +53,6 @@
 </div>
 
 <script>
-    
     document.querySelectorAll('input[type="file"]').forEach(input => {
         input.addEventListener('change', function() {
             if (this.files && this.files.length > 0) {
@@ -61,7 +62,7 @@
                 label.style.background = "#28a745"; 
                 label.style.color = "white";
                 label.style.borderColor = "#28a745";
-                label.innerHTML = `<i class="bi bi-check-circle-fill"></i> ${fileName.substring(0, 10)}...`;
+                label.innerHTML = `<i class="bi bi-check-circle-fill"></i> ${fileName.substring(0, 8)}...`;
             }
         });
     });

@@ -12,7 +12,7 @@ def add_post_view(request: HttpRequest):
             poster=request.FILES.get("poster") 
         )
         new_post.save()
-        return redirect("main:home_view") # يفضل الرديركت بعد الحفظ
+        return redirect("main:home_view") 
     
     return render(request, "blog/add_post.html")
 
@@ -49,3 +49,11 @@ def post_update_view(request: HttpRequest, post_id: int):
         return redirect("blog:post_detail_view", post_id=post.id)
 
     return render(request, "blog/post_update.html", {"post": post})
+
+def post_delete_view(request: HttpRequest, post_id: int):
+    
+    post = get_object_or_404(Post, id=post_id)
+    
+    post.delete()
+    
+    return redirect("main:home_view")
