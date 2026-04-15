@@ -24,3 +24,4 @@ def add_post_view(request):
         return redirect("main:home_view") 
     
     return render(request, "blog/add_post.html")
+    return redirect("main:home_view")
